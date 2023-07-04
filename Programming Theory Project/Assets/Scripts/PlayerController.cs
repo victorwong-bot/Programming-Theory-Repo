@@ -91,9 +91,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void ReturnToMenu()
+    public void ReturnToMenu()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 
 
