@@ -13,5 +13,15 @@ public class AnimalPlayer : Player
         base.Move(aniSpeed, aniRotateSpeed);
     }
 
+    public override string GetName()
+    {
+        return "Animal Team";
+    }
+
+    public override Color GetColor()
+    {
+        return new Color (0, 0, 255);
+    }
+
 
 }

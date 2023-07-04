@@ -74,11 +74,12 @@ public abstract class Player : MonoBehaviour
 
     public virtual string GetName()
     {
-        return "Unit";
+        return "Player";
     }
 
-    public virtual string GetData()
+    public virtual Color GetColor()
     {
-        return "";
+        return new Color (0, 0, 0);
     }
+
 }

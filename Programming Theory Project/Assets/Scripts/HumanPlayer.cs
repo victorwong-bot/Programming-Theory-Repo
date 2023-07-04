@@ -12,4 +12,14 @@ public class HumanPlayer : Player
         humanRotateSpeed = base.m_rotateSpeed * speedModiflier;
         base.Move(humanSpeed, humanRotateSpeed);
     }
+
+    public override string GetName()
+    {
+        return "Human Team";
+    }
+
+    public override Color GetColor()
+    {
+        return new Color (255, 0, 0);
+    }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public Camera StickCamera;
     private Player m_Selected = null;
     public GameObject Marker;
-    public Button ReturnToMenuButton;
+    public GameObject TeamPanel;
     private bool m_SwitchCamera;
 
     void Update()
@@ -24,19 +25,22 @@ public class PlayerController : MonoBehaviour
             HandleSelection();
             MarkerAction();
             StickCameraAction();
+            GreetingPanelAction();
         }
-
-        if (Input.GetKeyDown(KeyCode.T) && m_SwitchCamera)
-        {
-            GameCamera.enabled = false;
-            StickCamera.enabled = true;
-            m_SwitchCamera = !m_SwitchCamera;
-        }
-        else if (Input.GetKeyDown(KeyCode.T) && !m_SwitchCamera)
-        {
-            StickCamera.enabled = false;
-            GameCamera.enabled = true;
-            m_SwitchCamera = !m_SwitchCamera;
+        if (Input.GetKeyDown(KeyCode.T) && m_Selected != null)
+        {    
+            if (!m_SwitchCamera)
+            {
+                GameCamera.enabled = false;
+                StickCamera.enabled = true;
+                m_SwitchCamera = !m_SwitchCamera;
+            }
+            else
+            {
+                StickCamera.enabled = false;
+                GameCamera.enabled = true;
+                m_SwitchCamera = !m_SwitchCamera;
+            }
         }
        
     }
@@ -63,11 +67,12 @@ public class PlayerController : MonoBehaviour
     void StickCameraAction()
     {
         // offset the camera to the player's eye level
-        Vector3 offset = new Vector3 (0, m_Selected.GetComponent<BoxCollider>().center.y * 2, 0);
+        
         if (m_Selected != null && StickCamera.transform.parent != m_Selected.transform)
         {
+            Vector3 m_offset = new Vector3 (0, m_Selected.GetComponent<BoxCollider>().center.y * 2, 0);
             StickCamera.transform.SetParent(m_Selected.transform, false);
-            StickCamera.transform.localPosition = Vector3.zero + offset;
+            StickCamera.transform.localPosition = Vector3.zero + m_offset;
             // StickCamera.transform.LookAt(m_Selected.transform);
         }
         else if (m_Selected == null)
@@ -88,6 +93,20 @@ public class PlayerController : MonoBehaviour
             Debug.Log(player);
             m_Selected = player;
             
+        }
+    }
+
+    void GreetingPanelAction()
+    {
+        if (m_Selected != null)
+        {
+            TeamPanel.GetComponentInChildren<TextMeshProUGUI>().text = m_Selected.GetName();
+            TeamPanel.GetComponent<Image>().color = m_Selected.GetColor();
+            TeamPanel.SetActive(true);
+        }
+        else 
+        {
+            TeamPanel.SetActive(false);
         }
     }
 
