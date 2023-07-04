@@ -353,7 +353,6 @@
 "Assets/Scripts/AnimalPlayer.cs"
 "Assets/Scripts/FollowPlayerCamera.cs"
 "Assets/Scripts/HumanPlayer.cs"
-"Assets/Scripts/MainManager.cs"
 "Assets/Scripts/MenuHandler.cs"
 "Assets/Scripts/Player.cs"
 "Assets/Scripts/PlayerController.cs"

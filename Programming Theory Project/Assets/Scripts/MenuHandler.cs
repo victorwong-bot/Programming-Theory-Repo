@@ -8,12 +8,13 @@ using System.IO;
 
 public class MenuHandler : MonoBehaviour
 {
-
+    // ABSTRACTION
     public void StartGame()
     {
         SceneManager.LoadScene(1);
     }
-
+    
+    // ABSTRACTION
     public void QuitGame()
     {
     #if UNITY_EDITOR

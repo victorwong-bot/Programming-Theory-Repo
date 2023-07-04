@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-
-// Base class for all Player. It will handle movement order given through the UserControl script.
-// It require a NavMeshAgent to navigate the scene.
+// INHERITANCE (parent)
+// Base class for all Player. It will handle movement order given through the PlayerController script.
 
 public abstract class Player : MonoBehaviour
 
 {
+    // ENCAPSULATION
     public float m_speed {get;} = 50;
     public float m_rotateSpeed {get;} = 30;
 
@@ -25,9 +25,8 @@ public abstract class Player : MonoBehaviour
         OutOfBound();
     }
 
-
-    
-    // control gameObject to move different directions
+    // ABSTRACTION
+    // use keyboard control gameObject to move different directions
     public virtual void Move(float speed, float rotateSpeed)
     {
         float verticalInput = Input.GetAxis("Vertical");
@@ -46,6 +45,7 @@ public abstract class Player : MonoBehaviour
         }
     }
 
+    // ABSTRACTION
     // transport to other side if they across beyond the boundries
     private void OutOfBound()
     {
@@ -72,11 +72,13 @@ public abstract class Player : MonoBehaviour
         }
     }
 
+    // ABSTRACTION
     public virtual string GetName()
     {
         return "Player";
     }
 
+    // ABSTRACTION
     public virtual Color GetColor()
     {
         return new Color (0, 0, 0);

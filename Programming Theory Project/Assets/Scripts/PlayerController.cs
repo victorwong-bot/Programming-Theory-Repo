@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
             HandleSelection();
             MarkerAction();
             StickCameraAction();
-            GreetingPanelAction();
+            TeamPanelAction();
         }
         if (Input.GetKeyDown(KeyCode.T) && m_Selected != null)
         {    
@@ -45,6 +45,7 @@ public class PlayerController : MonoBehaviour
        
     }
 
+    // ABSTRACTION
     void MarkerAction()
     {
         if (m_Selected != null && Marker.transform.parent != m_Selected.transform)
@@ -62,15 +63,16 @@ public class PlayerController : MonoBehaviour
             
         }
     }
-    
+    // ABSTRACTION
     // move a camera to follow the selected player
     void StickCameraAction()
     {
-        // offset the camera to the player's eye level
+        
         
         if (m_Selected != null && StickCamera.transform.parent != m_Selected.transform)
         {
-            Vector3 m_offset = new Vector3 (0, m_Selected.GetComponent<BoxCollider>().center.y * 2, 0);
+            // offset the camera to the player's eye level
+            Vector3 m_offset = new Vector3 (0, m_Selected.GetComponent<BoxCollider>().center.y * 2, 1.5f);
             StickCamera.transform.SetParent(m_Selected.transform, false);
             StickCamera.transform.localPosition = Vector3.zero + m_offset;
             // StickCamera.transform.LookAt(m_Selected.transform);
@@ -82,7 +84,7 @@ public class PlayerController : MonoBehaviour
             
         }
     }
-
+    // ABSTRACTION
     void HandleSelection()
     {
         var ray = GameCamera.ScreenPointToRay(Input.mousePosition);
@@ -95,8 +97,8 @@ public class PlayerController : MonoBehaviour
             
         }
     }
-
-    void GreetingPanelAction()
+    // ABSTRACTION
+    void TeamPanelAction()
     {
         if (m_Selected != null)
         {
@@ -109,7 +111,7 @@ public class PlayerController : MonoBehaviour
             TeamPanel.SetActive(false);
         }
     }
-
+    // ABSTRACTION
     public void ReturnToMenu()
     {
         SceneManager.LoadScene(0);

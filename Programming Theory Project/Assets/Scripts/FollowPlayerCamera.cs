@@ -17,6 +17,7 @@ public class FollowPlayerCamera : MonoBehaviour
 
 
     }
+    // ABSTRACTION
     void Follow()
     {
         float horizontalInput = Input.GetAxis("Mouse X");
