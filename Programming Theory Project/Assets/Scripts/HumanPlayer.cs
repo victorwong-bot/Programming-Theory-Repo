@@ -14,7 +14,7 @@ public class HumanPlayer : Player
         humanRotateSpeed = base.m_rotateSpeed * speedModiflier;
         base.Move(humanSpeed, humanRotateSpeed);
     }
-
+    
     // POLYMORPHISM
     public override string GetName()
     {
